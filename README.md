@@ -1,6 +1,8 @@
 # Christmas-Lights (ver 1.0)
 A small Processing game by Luis Wong (luis@luiswong.com)
+
 Student project - ENJMIN M1 - 2015
+
 
 The object of the game is to have as most light as possible, by turning them on when they are dimming. 
 If most lights are off, the amount of light will go down and you will lose.
