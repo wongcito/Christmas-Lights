@@ -26,7 +26,7 @@ AudioInput input; // For adding sound
 PImage img; // Name of the image
 int cols = 2; // Number of columns of normal lights
 int rows = 4; // Number of rows of normal lights
-int colsb = 1; // Number of columns for moving lights
+int colsb = 3; // Number of columns for moving lights
 int rowsb = 3; // Number of columns for moving lights
 int universeLights = cols * rows + colsb * rowsb; // Number of lights
 boolean st = boolean ( round ( random (0,1))); // Expression for getting a random boolean
@@ -34,7 +34,7 @@ float percentage; // I will use this for the bar
 float totalAlpha; // I will use this for the percentage
 float rectWidth; // I will use this for the bar
 PFont f; // For adding text
-int speed = 1; // For the moving lights
+
 
 //Declaring a 2D array of Light objects
 Light[][] lights = new Light[cols][rows];
@@ -54,7 +54,7 @@ void setup() {
   for (int i = 0; i < cols; i++){
     for (int j = 0; j < rows; j++){
     //Initializing each light with a fixed position position and a random state (on/off)
-    lights[i][j] = new Light(185+i*150,210+j*85,st);
+    lights[i][j] = new Light(215+i*80,210+j*85,st);
     println (lights[i][j].x,lights[i][j].y, lights[i][j].state); // For debugging purposes
     st = boolean ( round ( random (0,1))); // Randomize of number of lights that are turned on
     }
@@ -63,7 +63,7 @@ void setup() {
   for (int i = 0; i < colsb; i++){
     for (int j = 0; j < rowsb; j++) {
     //Initializing each small light with a fixed position position and a random state (on/off)
-    smallLights[i][j] = new SmallLight(260+i*175,250+j*85,st);
+    smallLights[i][j] = new SmallLight(175+i*80,250+j*85,st);
     println (smallLights[i][j].x,smallLights[i][j].y, smallLights[i][j].state); // For debugging purposes
     st = boolean ( round ( random (0,1))); // Randomize of number of small lights that are turned on
     }
@@ -220,18 +220,29 @@ class Light {
 // I will create a small light class that will move
 class SmallLight extends Light {
   
+  int speed;
+  float range;
+  float depart;
+  
   SmallLight (float x, float y, boolean state) {
+    
+    
     
     super (x,y,state); // I call the Light properties
     dim = 20; // I change the size of the diameter
+    speed = 1; // For the moving lights
+    depart = y;
+    range = y + 20;
+    
   }
   
   // I will add a method for moving up and down the small light
   void move(){
     
     y = y + speed;
-    if ((y == 290) || (y == 250)) { // I change the speed when they arrive to a certain point
+    if ((y >= range) || (y <= depart)) { // I change the speed when they arrive to a certain point
       speed = speed * -1;
+      
     }
     
   }
