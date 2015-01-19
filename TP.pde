@@ -27,7 +27,7 @@ PImage img; // Name of the image
 int cols = 2; // Number of columns of normal lights
 int rows = 4; // Number of rows of normal lights
 int colsb = 3; // Number of columns for moving lights
-int rowsb = 3; // Number of columns for moving lights
+int rowsb = 2; // Number of columns for moving lights
 int universeLights = cols * rows + colsb * rowsb; // Number of lights
 boolean st = boolean ( round ( random (0,1))); // Expression for getting a random boolean
 float percentage; // I will use this for the bar
@@ -63,7 +63,7 @@ void setup() {
   for (int i = 0; i < colsb; i++){
     for (int j = 0; j < rowsb; j++) {
     //Initializing each small light with a fixed position position and a random state (on/off)
-    smallLights[i][j] = new SmallLight(175+i*80,250+j*85,st);
+    smallLights[i][j] = new SmallLight(175+i*80,300+j*85,st);
     println (smallLights[i][j].x,smallLights[i][j].y, smallLights[i][j].state); // For debugging purposes
     st = boolean ( round ( random (0,1))); // Randomize of number of small lights that are turned on
     }
